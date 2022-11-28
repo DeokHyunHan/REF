@@ -117,7 +117,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="1. 프로세스의 초기 설정&#xA;2. 프로세스에서 사용할 어플리케이션 실행&#xA;3. 로그 데이터테이블 생성" DisplayName="프로세스 초기화" sap:VirtualizedContainerService.HintSize="292,128" sap2010:WorkflowViewState.IdRef="State_1">
+      <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="1. 프로세스의 초기 설정&#xA;2. 프로세스에서 사용할 어플리케이션 실행&#xA;3. 로그 데이터테이블 생성" DisplayName="프로세스 초기화" sap:VirtualizedContainerService.HintSize="650,3174" sap2010:WorkflowViewState.IdRef="State_1">
         <State.Entry>
           <Sequence sap:VirtualizedContainerService.HintSize="604,2720" sap2010:WorkflowViewState.IdRef="Sequence_27">
             <sap:WorkflowViewStateService.ViewState>
