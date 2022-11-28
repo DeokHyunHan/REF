@@ -66,6 +66,18 @@
         "testCaseId": "5ea3efcf-8cea-4ffd-843c-43c3a4fcca19",
         "testCaseType": "TestCase",
         "fileName": "Tests\\InitAndCloseAllApplicationsTestCase.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "15b349f4-7721-4feb-9178-ccd559353120",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\KillAllProcessesTestCase.xaml"
+      },
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "d2e124e9-00fc-4178-ac5f-cb4db9e00cc9",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\SendEmailTestCase.xaml"
       }
     ],
     "modernBehavior": true
