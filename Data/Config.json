@@ -1,0 +1,23 @@
+﻿{
+	
+    "Settings" : {
+        "AutomationName" : "TestProcess",
+        "ProcessesToKill" : ["EXCEL.EXE", "chrome.exe", "OUTLOOK.EXE"]
+    },
+	
+    "Constants" : {
+        "MaxRetryGetTransaction" : 1,
+        "MaxRetryProcessTransaction" : 2,
+        "MaxConsecutiveSystemException" : 1
+    },
+	
+    "Assets" : {
+        
+    },
+	
+	"Misc" : {
+		"DeveloperMailAccount" : "dhhan@seinens.com",
+		"BusinessMailAccount" : "dhhan@seinens.com"
+	}
+	
+}
