@@ -2,7 +2,7 @@
 	
     "Settings" : {
         "AutomationName" : "TestProcess",
-        "ProcessesToKill" : ["EXCEL.EXE", "chrome.exe", "OUTLOOK.EXE"]
+        "ProcessesToKill" : ["EXCEL.EXE", "OUTLOOK.EXE", "chrome.exe"]
     },
 	
     "Constants" : {

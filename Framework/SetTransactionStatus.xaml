@@ -1,10 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="SetTransactionStatus" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SetTransactionStatus" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
     <x:Property Name="in_BusinessException" Type="InArgument(ui:BusinessRuleException)" />
     <x:Property Name="in_SystemException" Type="InArgument(s:Exception)" />
     <x:Property Name="io_TransactionNumber" Type="InOutArgument(x:Int32)" />
-    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Config" Type="InArgument(njl:JObject)" />
     <x:Property Name="io_RetryNumber" Type="InOutArgument(x:Int32)" />
     <x:Property Name="io_ConsecutiveSystemExceptions" Type="InOutArgument(x:Int32)" />
     <x:Property Name="io_dt_TransactionLogData" Type="InOutArgument(sd:DataTable)" />
@@ -12,10 +12,10 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1794,2076</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1794,2108</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SetTransactionStatus_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="30">
+    <scg:List x:TypeArguments="x:String" Capacity="60">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -46,10 +46,14 @@
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Xml.Serialization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="45">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="50">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
@@ -94,9 +98,14 @@
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart DisplayName="SetTransactionStatus" sap:VirtualizedContainerService.HintSize="1592,2011" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+  <Flowchart DisplayName="SetTransactionStatus" sap:VirtualizedContainerService.HintSize="1612,2043" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="x:String" Name="str_Status" />
     </Flowchart.Variables>
@@ -130,11 +139,11 @@
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">0,515</av:Point>
-              <av:Size x:Key="ShapeSize">200,92</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">100,607 100,741 180,741</av:PointCollection>
+              <av:Size x:Key="ShapeSize">200,90</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">100,605 100,740 180,740</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="작업 성공!" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="작업 성공!" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -156,11 +165,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">180,695</av:Point>
-                  <av:Size x:Key="ShapeSize">200,92</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">280,787 280,1861 850,1861</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,90</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">280,785 280,1861 850,1861</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="다음 작업으로 넘어간다" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence DisplayName="다음 작업으로 넘어간다" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -232,11 +241,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">370,515</av:Point>
-                  <av:Size x:Key="ShapeSize">200,92</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">470,607 470,741 380,741</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,90</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">470,605 470,740 380,740</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="처리 거부" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="처리 거부" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -263,11 +272,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">840,515</av:Point>
-                  <av:Size x:Key="ShapeSize">200,92</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">940,607 940,676.5</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,90</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">940,605 940,676.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="처리 실패" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="처리 실패" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -286,7 +295,10 @@
                 </Assign>
               </Sequence>
               <FlowStep.Next>
-                <FlowDecision x:Name="__ReferenceID7" Condition="[CInt(in_Config(&quot;개별작업재시도횟수&quot;)) &gt; 0]" DisplayName="작업을 재시도할까?" sap:VirtualizedContainerService.HintSize="112,87" sap2010:WorkflowViewState.IdRef="FlowDecision_4">
+                <FlowDecision x:Name="__ReferenceID7" DisplayName="작업을 재시도할까?" sap:VirtualizedContainerService.HintSize="112,87" sap2010:WorkflowViewState.IdRef="FlowDecision_4">
+                  <FlowDecision.Condition>
+                    <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="CInt(in_Config(&quot;Constants&quot;)(&quot;MaxRetryProcessTransaction&quot;)) &gt; 0" />
+                  </FlowDecision.Condition>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -299,7 +311,10 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <FlowDecision.True>
-                    <FlowDecision x:Name="__ReferenceID9" Condition="[io_RetryNumber &gt;= CInt(in_Config(&quot;개별작업재시도횟수&quot;))]" DisplayName="재시도 상한에 도달했는가?" sap:VirtualizedContainerService.HintSize="152,87" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
+                    <FlowDecision x:Name="__ReferenceID9" DisplayName="재시도 상한에 도달했는가?" sap:VirtualizedContainerService.HintSize="152,87" sap2010:WorkflowViewState.IdRef="FlowDecision_5">
+                      <FlowDecision.Condition>
+                        <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="io_RetryNumber &gt;= CInt(in_Config(&quot;Constants&quot;)(&quot;MaxRetryProcessTransaction&quot;))" />
+                      </FlowDecision.Condition>
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -316,11 +331,11 @@
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">400,1005</av:Point>
-                              <av:Size x:Key="ShapeSize">200,92</av:Size>
-                              <av:PointCollection x:Key="ConnectorLocation">500,1097 500,1185</av:PointCollection>
+                              <av:Size x:Key="ShapeSize">200,90</av:Size>
+                              <av:PointCollection x:Key="ConnectorLocation">500,1095 500,1185</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="재시도횟수를 리셋하고" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence DisplayName="재시도횟수를 리셋하고" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_9">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -340,11 +355,11 @@
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">400,1185</av:Point>
-                                  <av:Size x:Key="ShapeSize">200,92</av:Size>
-                                  <av:PointCollection x:Key="ConnectorLocation">500,1277 500,1307 950,1307 950,1505</av:PointCollection>
+                                  <av:Size x:Key="ShapeSize">200,90</av:Size>
+                                  <av:PointCollection x:Key="ConnectorLocation">500,1275 500,1305 950,1305 950,1505</av:PointCollection>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Sequence DisplayName="다음 작업으로 넘어간다" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <Sequence DisplayName="다음 작업으로 넘어간다" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_10">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -364,11 +379,11 @@
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <av:Point x:Key="ShapeLocation">850,1505</av:Point>
-                                      <av:Size x:Key="ShapeSize">200,92</av:Size>
-                                      <av:PointCollection x:Key="ConnectorLocation">950,1597 950,1785</av:PointCollection>
+                                      <av:Size x:Key="ShapeSize">200,90</av:Size>
+                                      <av:PointCollection x:Key="ConnectorLocation">950,1595 950,1785</av:PointCollection>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <Sequence DisplayName="상태를 '실패'로 업데이트한다" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                  <Sequence DisplayName="상태를 '실패'로 업데이트한다" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_15">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -397,10 +412,10 @@
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">860,1005</av:Point>
-                              <av:Size x:Key="ShapeSize">200,92</av:Size>
+                              <av:Size x:Key="ShapeSize">200,90</av:Size>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="재시도횟수를 증가시킨다" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <Sequence DisplayName="재시도횟수를 증가시킨다" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_8">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -424,11 +439,11 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">1230,1005</av:Point>
-                          <av:Size x:Key="ShapeSize">200,92</av:Size>
-                          <av:PointCollection x:Key="ConnectorLocation">1330,1097 1330,1307.1419027112267 950,1307.1419027112267 950,1505</av:PointCollection>
+                          <av:Size x:Key="ShapeSize">200,90</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">1330,1095 1330,1125 950,1125 950,1505</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="다음 작업으로 넘어간다" sap:VirtualizedContainerService.HintSize="200,92" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence DisplayName="다음 작업으로 넘어간다" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="Sequence_6">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
